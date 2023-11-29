@@ -94,10 +94,10 @@ function MyAppBar(props) {
           {drawer}
         </Drawer>
       </nav>
-      <Box component="main" sx={{ p: 3 }}>
+      {/* <Box component="main" sx={{ p: 3 }}>
         <Toolbar />
         <ProductDisplay/>
-      </Box>
+      </Box> */}
     </Box>
   );
 }

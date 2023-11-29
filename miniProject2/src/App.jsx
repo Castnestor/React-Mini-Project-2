@@ -12,9 +12,7 @@ function App() {
 
     <MyAppBar/>
     
-    {/* <AppRoutes/> */}
-
-    <ProductDisplay/>
+    <AppRoutes/>
 
     <Footer/>
 
