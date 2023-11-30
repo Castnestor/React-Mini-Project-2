@@ -1,10 +1,11 @@
-import { useAxios } from '../hooks/useAxios'
+import { useAxios } from '../hooks/useAxios';
 import ProductCard from './ProductCard';
+import Grid from "@mui/material/Grid";
 
 
 function ProductDisplay() {
 
-    let limit = 5;
+    let limit = 30;
     
     const productData = useAxios("https://dummyjson.com/products?limit=" + limit, []);
 
@@ -13,19 +14,19 @@ function ProductDisplay() {
     const products = productData?.data?.products || [];
     
     const productList = products.map((product) => (
-        <>
-        <ProductCard key={product.id} title={product.title} 
+        <Grid key={product.id} item xs={12} md={4} lg={3}>
+        <ProductCard title={product.title} 
         description={product.description} 
         thumbnail={product.thumbnail}
         price={product.price}/>
-        </>
+        </Grid>
     ));
 
     return (
-        <div>
+        <Grid container spacing={6} my={4}>
         {productList}
         {console.log(productList)}
-        </div>
+        </Grid>
     )
 }
 
