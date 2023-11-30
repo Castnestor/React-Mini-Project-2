@@ -14,6 +14,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { NavLink } from "react-router-dom";
+import { useUserContext } from "../context/userContext";
 
 const drawerWidth = 240;
 const navItems = [
@@ -31,6 +32,10 @@ function MyAppBar(props) {
     setMobileOpen((prevState) => !prevState);
   };
 
+  const handleLogOut = () => {
+    handleUpdateUser({});
+  };
+
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
@@ -38,16 +43,20 @@ function MyAppBar(props) {
       </Typography>
       <Divider />
       <List>
-        {navItems.map((item) => (
-          <ListItem key={item.name} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item.name} />
-            </ListItemButton>
-          </ListItem>
+        {navItems.map((item, index) => (
+          <NavLink key={index} to={"" + item.url}>
+            <ListItem key={item.name} disablePadding>
+              <ListItemButton sx={{ textAlign: "center" }}>
+                <ListItemText primary={item.name} />
+              </ListItemButton>
+            </ListItem>
+          </NavLink>
         ))}
       </List>
     </Box>
   );
+
+  const { logedUser, handleUpdateUser } = useUserContext();
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
@@ -73,12 +82,26 @@ function MyAppBar(props) {
           >
             Good Buy
           </Typography>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+          >
+            Welcome {logedUser.name}
+          </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item) => (
-              <Button key={item.name} sx={{ color: "#fff" }}>
-                {item.name}
-              </Button>
+            {navItems.map((item, index) => (
+              <NavLink key={index} to={"" + item.url}>
+                <Button key={item.name} sx={{ color: "#fff" }}>
+                  {item.name}
+                </Button>
+              </NavLink>
             ))}
+            {logedUser.name ? (
+              <Button sx={{ color: "#fff" }} onClick={handleLogOut}>
+                Log Out
+              </Button>
+            ) : null}
           </Box>
         </Toolbar>
       </AppBar>

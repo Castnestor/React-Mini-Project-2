@@ -25,3 +25,20 @@
 .read-the-docs {
   color: #888;
 }
+
+.homeFilter {
+  margin-top: 4rem;
+}
+
+.avatar{
+  align-items: center;
+}
+
+.userName {
+  font-size: 4rem;
+}
+
+.userEmail {
+  font-size: 3rem;
+  margin-bottom: 20rem;
+}

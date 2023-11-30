@@ -1,11 +1,17 @@
-import ProductDisplay from "../components/ProductDisplay";
+import Filters from "../components/Filters";
+import { useUserContext } from "../context/userContext";
 
 export default function Home() {
-    return (
-        <div className="Homepage">
-            <h1>Home</h1>
-            <ProductDisplay/>
 
+    const { logedUser } = useUserContext();
+    console.log(logedUser);
+    
+    return (
+        <>
+        <div className="homeFilter">
+            <h3>Filter</h3>
+            <Filters/>
         </div>
+        </>
     )
 }

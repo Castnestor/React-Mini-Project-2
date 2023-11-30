@@ -1,7 +1,7 @@
 function Footer (props) {
     return (
         <div>
-            &copy; Copyright 2023 Nestor Castillo
+            &copy; Copyright Good buy 2023
         </div>
     )
 }
